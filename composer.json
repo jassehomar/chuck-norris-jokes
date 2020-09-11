@@ -1,0 +1,26 @@
+{
+  "name": "jassehomar/chuck-norris-jokes",
+  "description": "Create random Chuck Norris Jokes.",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Omar Jasseh",
+      "email": "jassehomar99@gmail.comm"
+    }
+  ],
+  "require": {},
+  "autoload": {
+    "psr-4": {
+      "JassehOmar\\ChuckNorrisJokes\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "JassehOmar\\ChuckNorrisJokes\\Tests\\": "tests"
+    }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.3"
+  }
+}
