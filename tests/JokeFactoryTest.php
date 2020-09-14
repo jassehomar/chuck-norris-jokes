@@ -2,25 +2,40 @@
 
 namespace JassehOmar\ChuckNorrisJokes\Tests;
 
-use JassehOmar\ChuckNorrisJokes\JokeFactory;
+use GuzzleHttp\Client;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
+use GuzzleHttp\Handler\MockHandler;
+use JassehOmar\ChuckNorrisJokes\JokeFactory;
 
 class JokeFactoryTest extends TestCase
 {
     /** @test  */
     public function it_returns_a_random_joke()
     {
-        $jokes = new JokeFactory([
-            'This is a joke',
+        $mock = new MockHandler([
+            new Response(200, [], '{
+                "type": "success",
+                "value": {
+                "id": 588,
+                "joke": "Chuck Norris knows Victoria\'s secret.",
+                "categories": []
+            }}'),
         ]);
+
+        $handlerStack = HandlerStack::create($mock);
+        $client = new Client(['handler' => $handlerStack]);
+
+        $jokes = new JokeFactory($client);
 
         $joke = $jokes->getRandomJoke();
 
-        $this->assertSame('This is a joke', $joke);
+        $this->assertSame('Chuck Norris knows Victoria\'s secret.', $joke);
     }
 
     /** @test  */
-    public function it_returns_a_predefined_joke()
+    /* public function it_returns_a_predefined_joke()
     {
         $chuckNorrisJokes =
             [
@@ -41,5 +56,5 @@ class JokeFactoryTest extends TestCase
         $joke = $jokes->getRandomJoke();
 
         $this->assertContains($joke, $chuckNorrisJokes);
-    }
+    } */
 }

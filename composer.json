@@ -9,7 +9,9 @@
       "email": "jassehomar99@gmail.comm"
     }
   ],
-  "require": {},
+  "require": {
+    "guzzlehttp/guzzle": "^7.0"
+  },
   "autoload": {
     "psr-4": {
       "JassehOmar\\ChuckNorrisJokes\\": "src/"
@@ -21,6 +23,17 @@
     }
   },
   "require-dev": {
-    "phpunit/phpunit": "^9.3"
+    "phpunit/phpunit": "^9.3",
+    "orchestra/testbench": "~3.0"
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "JassehOmar\\ChuckNorrisJokes\\ChuckNorrisJokesServiceProvider"
+      ],
+      "aliases": {
+        "ChuckNorris": "JassehOmar\\ChuckNorrisJokes\\Facades\\ChuckNorris"
+      }
+    }
   }
 }
