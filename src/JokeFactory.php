@@ -30,7 +30,6 @@ class JokeFactory
 
     public function getRandomJoke()
     {
-
         $response = $this->client->get(self::API_ENDPOINT);
 
         return json_decode($response->getBody()->getContents())->value->joke;
